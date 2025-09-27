@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFinance } from '../contexts/FinanceContext';
+import { formatINRCompact } from '../utils/currency';
 
 const TransactionList: React.FC = () => {
   const { transactions, deleteTransaction } = useFinance();
@@ -35,7 +36,7 @@ const TransactionList: React.FC = () => {
                   transaction.type === 'income' ? 'transaction-income' : 'transaction-expense'
                 }`}
               >
-                {transaction.type === 'income' ? '+' : '-'}${transaction.amount.toFixed(2)}
+                {transaction.type === 'income' ? '+' : '-'}{formatINRCompact(transaction.amount)}
               </span>
               <button 
                 onClick={() => deleteTransaction(transaction.id)}

@@ -2,6 +2,7 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { useFinance } from '../contexts/FinanceContext';
 import { MonthlyData } from '../types';
+import { formatINRCompact } from '../utils/currency';
 
 const SpendingChart: React.FC = () => {
   const { transactions } = useFinance();
@@ -78,7 +79,7 @@ const SpendingChart: React.FC = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
             <YAxis />
-            <Tooltip formatter={(value: number) => [`$${value.toFixed(2)}`, '']} />
+            <Tooltip formatter={(value: number) => [formatINRCompact(value), '']} />
             <Legend />
             <Line 
               type="monotone" 
@@ -111,7 +112,7 @@ const SpendingChart: React.FC = () => {
               interval={0}
             />
             <YAxis />
-            <Tooltip formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']} />
+            <Tooltip formatter={(value: number) => [formatINRCompact(value), 'Amount']} />
             <Bar dataKey="amount" fill="#007bff" />
           </BarChart>
         </ResponsiveContainer>
