@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useFinance } from '../contexts/FinanceContext';
 import { EXPENSE_CATEGORIES } from '../types';
+import { formatINRCompact } from '../utils/currency';
 
 const BudgetManager: React.FC = () => {
   const { budgets, transactions, addBudget, deleteBudget } = useFinance();
@@ -71,7 +72,7 @@ const BudgetManager: React.FC = () => {
         </div>
 
         <div className="form-group">
-          <label>Budget Amount ($)</label>
+          <label>Budget Amount (₹)</label>
           <input
             type="number"
             step="0.01"
@@ -111,7 +112,7 @@ const BudgetManager: React.FC = () => {
                   <div>
                     <strong>{budget.category}</strong>
                     <div style={{ fontSize: '14px', color: '#666' }}>
-                      ${spent.toFixed(2)} / ${budget.amount.toFixed(2)} ({budget.period})
+                      {formatINRCompact(spent)} / {formatINRCompact(budget.amount)} ({budget.period})
                     </div>
                   </div>
                   <button 

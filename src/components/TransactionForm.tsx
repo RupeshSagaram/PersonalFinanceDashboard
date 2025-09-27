@@ -60,7 +60,7 @@ const TransactionForm: React.FC = () => {
         </div>
 
         <div className="form-group">
-          <label>Amount ($)</label>
+          <label>Amount (₹)</label>
           <input
             type="number"
             step="0.01"
